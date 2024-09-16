@@ -9,7 +9,7 @@ def test_lazy_imports():
            "mods = [x for x in sys.modules if 'matplotlib.pyplot' in x]; "
            "assert not mods, mods")
     cmd = sys.executable + ' -c "' + cmd + '"'
-    p = subprocess.Popen(cmd, shell=True, close_fds=True)
+    p = subprocess.Popen(cmd, shell=False, close_fds=True)
     p.wait()
     rc = p.returncode
     assert rc == 0
@@ -18,7 +18,7 @@ def test_lazy_imports():
 def test_docstring_optimization_compat():
     # GH#5235 check that importing with stripped docstrings does not raise
     cmd = sys.executable + ' -OO -c "import statsmodels.api as sm"'
-    p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE,
+    p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE,
                          stderr=subprocess.PIPE)
     out = p.communicate()
     rc = p.returncode
