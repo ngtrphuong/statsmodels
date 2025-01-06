@@ -140,7 +140,7 @@ print(res_hamilton.expected_durations)
 
 # Get the dataset
 ew_excs = requests.get(
-    'http://econ.korea.ac.kr/~cjkim/MARKOV/data/ew_excs.prn').content
+    'http://econ.korea.ac.kr/~cjkim/MARKOV/data/ew_excs.prn', timeout=60).content
 raw = pd.read_table(
     BytesIO(ew_excs), header=None, skipfooter=1, engine='python')
 raw.index = pd.date_range('1926-01-01', '1995-12-01', freq='MS')
@@ -214,7 +214,7 @@ fig.tight_layout()
 
 # Get the dataset
 filardo = requests.get(
-    'http://econ.korea.ac.kr/~cjkim/MARKOV/data/filardo.prn').content
+    'http://econ.korea.ac.kr/~cjkim/MARKOV/data/filardo.prn', timeout=60).content
 dta_filardo = pd.read_table(
     BytesIO(filardo), sep=' +', header=None, skipfooter=1, engine='python')
 dta_filardo.columns = ['month', 'ip', 'leading']
