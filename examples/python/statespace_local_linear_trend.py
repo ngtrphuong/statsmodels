@@ -178,7 +178,7 @@ from zipfile import ZipFile
 
 # Download the dataset
 ck = requests.get(
-    'http://staff.feweb.vu.nl/koopman/projects/ckbook/OxCodeAll.zip').content
+    'http://staff.feweb.vu.nl/koopman/projects/ckbook/OxCodeAll.zip', timeout=60).content
 zipped = ZipFile(BytesIO(ck))
 df = pd.read_table(
     BytesIO(
