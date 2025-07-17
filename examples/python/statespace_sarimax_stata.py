@@ -91,7 +91,7 @@ from io import BytesIO
 # so that $c = (1 - \phi_1) \beta_0$.
 
 # Dataset
-wpi1 = requests.get('https://www.stata-press.com/data/r12/wpi1.dta').content
+wpi1 = requests.get('https://www.stata-press.com/data/r12/wpi1.dta', timeout=60).content
 data = pd.read_stata(BytesIO(wpi1))
 data.index = data.t
 
@@ -340,7 +340,7 @@ print(res.summary())
 # ```
 
 # Dataset
-air2 = requests.get('https://www.stata-press.com/data/r12/air2.dta').content
+air2 = requests.get('https://www.stata-press.com/data/r12/air2.dta', timeout=60).content
 data = pd.read_stata(BytesIO(air2))
 data.index = pd.date_range(
     start=datetime(data.time[0], 1, 1), periods=len(data), freq='MS')
@@ -416,7 +416,7 @@ print(res.summary())
 
 # Dataset
 friedman2 = requests.get(
-    'https://www.stata-press.com/data/r12/friedman2.dta').content
+    'https://www.stata-press.com/data/r12/friedman2.dta', timeout=60).content
 data = pd.read_stata(BytesIO(friedman2))
 data.index = data.time
 

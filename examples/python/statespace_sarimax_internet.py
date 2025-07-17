@@ -25,7 +25,7 @@ from io import BytesIO
 from zipfile import ZipFile
 
 # Download the dataset
-dk = requests.get('http://www.ssfpack.com/files/DK-data.zip').content
+dk = requests.get('http://www.ssfpack.com/files/DK-data.zip', timeout=60).content
 f = BytesIO(dk)
 zipped = ZipFile(f)
 df = pd.read_table(
