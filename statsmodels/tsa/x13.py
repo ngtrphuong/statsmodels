@@ -21,6 +21,7 @@ from statsmodels.tools.tools import Bunch
 from statsmodels.tools.sm_exceptions import (X13NotFoundError,
                                              IOWarning, X13Error,
                                              X13Warning)
+from security import safe_command
 
 __all__ = ["x13_arima_select_order", "x13_arima_analysis"]
 
@@ -122,7 +123,7 @@ def run_spec(x12path, specpath, outname=None, meta=False, datameta=False):
     if outname:
         args += [outname]
 
-    return subprocess.Popen(args, stdout=subprocess.PIPE,
+    return safe_command.run(subprocess.Popen, args, stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT)
 
 
